@@ -1,5 +1,6 @@
 package com.nazarov.springrestapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nazarov.springrestapi.model.enums.FileStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -50,7 +51,6 @@ public class File {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "file")
-    @ToString.Exclude
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "file")
     private List<Event> events = new ArrayList<>();
 }

@@ -1,7 +1,7 @@
 package com.nazarov.springrestapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -10,7 +10,6 @@ import java.util.Date;
 
 @Data
 @Entity
-@NoArgsConstructor
 @Table(name = "events")
 public class Event {
 
@@ -25,9 +24,9 @@ public class Event {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "file_id", referencedColumnName = "id")
+    @JoinColumn(name = "file_id")
     @ToString.Exclude
-    private File file;
+    protected File file;
 
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)

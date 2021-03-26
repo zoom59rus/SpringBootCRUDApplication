@@ -3,7 +3,7 @@ GET /api/v1/users/files?name=:name, return file on name
 GET /api/v1/users/files/all, return all files
 GET /api/v1/users/files?type=:type, return all files on type
 
-GET /api/v1/users/events?id=:id, return event on name
+GET /api/v1/users/events?id=:id, return event on id
 GET /api/v1/users/events/all, return all events
 GET /api/v1/users/events?fileid=:id, return events on fail id
 GET /api/v1/users/events?filename=:name, return events on file name

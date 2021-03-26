@@ -106,4 +106,19 @@ public class UserController {
 
         return ResponseEntity.ok(result);
     }
+
+    @GetMapping(value = "/files/test", params = "id")
+    public ResponseEntity<?> test(final @RequestParam(value = "id") Long id){
+        if(id == null){
+            return new ResponseEntity<>(new Error("Параметр не может быть null"), HttpStatus.BAD_REQUEST);
+        }
+
+        File file = userService.getTestFile(id);
+        if(file == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        System.out.println(file);
+
+        return ResponseEntity.ok(file);
+    }
 }
