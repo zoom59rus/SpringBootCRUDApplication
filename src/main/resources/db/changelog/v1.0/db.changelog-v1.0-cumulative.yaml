@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: release-1.0.0
+      author: nazarov
+      changes:
+        - tagDatabase:
+            tag: 1.0.0
+  - changeSet:
+      id: 1.0.1
+      author: nazarov
+      comment: Create database is accounts, users, files, events
+      changes:
+        - sqlFile:
+            path: db.changelog-Initial_DB.sql
+            relativeToChangelogFile: true
+      rolback: DROP TABLE events;
+               DROP TABLE files;
+               DROP TABLE users;
+               DROP TABLE accounts;
+               DROP TABLE roles;
+               DROP TABLE accounts_roles;
+  - changeSet:
+      id: release-1.0.1
+      author: nazarov
+      changes:
+        - tagDatabase:
+            tag: 1.0.1
+  - changeSet:
+      id: 1.0.2
+      author: nazarov
+      comment: Add constraints
+      changes:
+        - sqlFile:
+            path: db.changelog-Set_Constraints.sql
+            relativeToChangelogFile: true
+      rollback: ALTER TABLE events DROP FOREIGN KEY fk_events_files;
+                ALTER TABLE events DROP FOREIGN KEY fk_events_users;
+                ALTER TABLE files DROP FOREIGN KEY fk_files_users;
+                ALTER TABLE users DROP FOREIGN KEY fk_users_accounts;
+  - changeSet:
+      id: release-v1.0.2
+      author: nazarov
+      changes:
+        - tagDatabase:
+            tag: 1.0.2
