@@ -18,13 +18,15 @@ public class Event {
     @Column(name = "id")
     private Long id;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ToString.Exclude
     private User user;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "file_id")
+    @JoinColumn(name = "file_id", referencedColumnName = "id")
     @ToString.Exclude
     protected File file;
 
