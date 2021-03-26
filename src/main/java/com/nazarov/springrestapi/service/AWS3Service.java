@@ -10,7 +10,6 @@ import java.util.List;
 
 public interface AWS3Service {
 
-    boolean isExist(String bucketName);
     Bucket createBucket(String bucketName);
     List<Bucket> getBucketList();
     boolean removeBucket(String bucketName);

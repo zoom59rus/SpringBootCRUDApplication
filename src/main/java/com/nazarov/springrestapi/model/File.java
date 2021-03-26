@@ -50,7 +50,7 @@ public class File {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "file")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "file")
     @ToString.Exclude
     private List<Event> events = new ArrayList<>();
 }

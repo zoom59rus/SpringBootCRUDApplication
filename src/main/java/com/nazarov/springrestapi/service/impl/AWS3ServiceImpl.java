@@ -26,41 +26,6 @@ public class AWS3ServiceImpl implements AWS3Service {
     }
 
     @Override
-    public boolean isExist(String bucketName) {
-        boolean result = false;
-
-        for (int i = 0; i < 50; ) {
-            try {
-                result = !s3Client.doesBucketExistV2(bucketName);
-                System.out.println(result);
-                if (result) {
-                    System.out.println("Имя " + bucketName + " свободно.");
-                } else {
-                    System.out.println("Имя " + bucketName + " занято. Выберите другое имя.");
-                }
-
-                return result;
-            } catch (AmazonServiceException e) {
-                System.err.println("Ошибка AmazonServiceException: ");
-                e.printStackTrace();
-            } catch (SdkClientException e) {
-                if (e.getMessage().matches("(.*)Connection refused(.*)")) {
-                    System.err.println("Ошибка подключения, пробуем еще " + (50 - ++i) + " раз.");
-                } else {
-                    System.err.println("Другая ошибка SdkClientException: ");
-                    e.printStackTrace();
-                }
-            } catch (Exception e) {
-                System.err.println("Ошибка Exception другого характера: ");
-                e.printStackTrace();
-            }
-        }
-        System.err.println("Ошибка в подключении или сервер не доступен. Попробуйте позднее.");
-
-        return result;
-    }
-
-    @Override
     public Bucket createBucket(String bucketName) {
         Bucket bucket = null;
 
