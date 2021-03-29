@@ -3,11 +3,6 @@ ALTER TABLE users
         FOREIGN KEY (account_id) REFERENCES accounts (id)
             ON DELETE SET NULL;
 
-ALTER TABLE files
-    ADD CONSTRAINT fk_files_users
-        FOREIGN KEY (user_id) REFERENCES users (id)
-            ON DELETE SET NULL;
-
 ALTER TABLE events
     ADD CONSTRAINT fk_events_users
         FOREIGN KEY (user_id) REFERENCES users (id)
@@ -26,4 +21,14 @@ ALTER TABLE accounts_roles
 ALTER TABLE accounts_roles
     ADD CONSTRAINT fk_accounts_roles_roles
         FOREIGN KEY (role_id) REFERENCES roles (id)
+            ON DELETE CASCADE;
+
+ALTER TABLE users_files
+    ADD CONSTRAINT fk_users_files_users
+        FOREIGN KEY (user_id) REFERENCES users(id)
+            ON DELETE CASCADE;
+
+ALTER TABLE users_files
+    ADD CONSTRAINT fr_users_files_files
+        FOREIGN KEY (file_id) REFERENCES files(id)
             ON DELETE CASCADE;

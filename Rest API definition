@@ -7,3 +7,7 @@ GET /api/v1/users/events?id=:id, return event on id
 GET /api/v1/users/events/all, return all events
 GET /api/v1/users/events?fileid=:id, return events on fail id
 GET /api/v1/users/events?filename=:name, return events on file name
+
+POST /api/v1/moderators/set?userid=:?&fileid=:?, set file for user on he id
+POST /api/v1/moderators/delete?id=:?, delete file on id
+POST /api/v1/moderators/upload?userid=:?bucket=:?&path=:?, return file uploaded

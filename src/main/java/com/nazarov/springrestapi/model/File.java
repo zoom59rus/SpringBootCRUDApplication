@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nazarov.springrestapi.model.enums.FileStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -47,11 +46,22 @@ public class File {
     @Column(name = "last_modified")
     private Date lastModified;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
-
+    @ManyToMany(mappedBy = "files", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "file")
+    private List<User> users;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, mappedBy = "file")
+    @JsonIgnore
     private List<Event> events = new ArrayList<>();
+
+    public void setType(String type){
+        if(type == null){
+            this.type = "unknown";
+        } else this.type = type;
+    }
+
+    public void addUser(User user){
+        this.users = new ArrayList<>();
+        users.add(user);
+    }
 }

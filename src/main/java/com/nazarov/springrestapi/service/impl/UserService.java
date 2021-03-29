@@ -12,7 +12,6 @@ import java.util.List;
 public class UserService implements com.nazarov.springrestapi.service.UserService {
 
     private final FileRepository fileRepository;
-
     private final EventRepository eventRepository;
 
     public UserService(FileRepository fileRepository, EventRepository eventRepository) {

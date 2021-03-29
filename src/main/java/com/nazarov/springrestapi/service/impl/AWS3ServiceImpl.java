@@ -84,18 +84,19 @@ public class AWS3ServiceImpl implements AWS3Service {
     }
 
     @Override
-    public PutObjectResult upload(String bucketName, String filePath) {
+    public S3Object upload(String bucketName, String filePath) {
         File file = new File(filePath);
 
         try {
-            return s3Client.putObject(bucketName, file.getName(), file);
+            PutObjectResult  putObjectResult= s3Client.putObject(bucketName, file.getName(), file);
+            return getS3Object(bucketName, file.getName());
         } catch (AmazonS3Exception a) {
             log.error("IN upload - Удаленный сервер получил запрос, но не может его обработать. Сообщение об ошибке: \n{}", a.getMessage());
         } catch (SdkClientException s) {
             log.error("IN upload - Удаленный сервер не доступен или не отвечает. Сообщение об ошибке: \n{}", s.getMessage());
         }
 
-        return new PutObjectResult();
+        return new S3Object();
     }
 
     @Override

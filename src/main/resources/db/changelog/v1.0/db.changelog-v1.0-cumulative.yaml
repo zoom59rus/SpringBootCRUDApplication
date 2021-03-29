@@ -37,6 +37,9 @@ databaseChangeLog:
                 ALTER TABLE events DROP FOREIGN KEY fk_events_users;
                 ALTER TABLE files DROP FOREIGN KEY fk_files_users;
                 ALTER TABLE users DROP FOREIGN KEY fk_users_accounts;
+                ALTER TABLE users_files DROP FOREIGN KEY fk_users_files_users;
+                ALTER TABLE users_files DROP FOREIGN KEY fk_users_files_files;
+                DROP TABLE users_files;
   - changeSet:
       id: release-v1.0.2
       author: nazarov

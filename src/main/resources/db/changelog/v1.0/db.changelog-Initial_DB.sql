@@ -4,8 +4,8 @@ CREATE TABLE IF NOT EXISTS accounts
     login    varchar(50),
     password varchar(255),
     status   varchar(50),
-    created  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated  TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+    created  TIMESTAMP DEFAULT NOW(),
+    updated  TIMESTAMP DEFAULT NULL ON UPDATE NOW(),
     PRIMARY KEY (id)
 );
 
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS roles
 CREATE TABLE IF NOT EXISTS accounts_roles
 (
     account_id BIGINT,
-    role_id BIGINT
+    role_id    BIGINT
 );
 
 CREATE TABLE IF NOT EXISTS users
@@ -40,10 +40,15 @@ CREATE TABLE IF NOT EXISTS files
     type          varchar(50),
     size          FLOAT     DEFAULT 0.00,
     status        varchar(50),
-    upload        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    last_modified TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-    user_id       BIGINT,
+    upload        TIMESTAMP DEFAULT NOW(),
+    last_modified TIMESTAMP DEFAULT NULL ON UPDATE NOW(),
     PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS users_files
+(
+    user_id BIGINT NOT NULL,
+    file_id BIGINT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS events
@@ -51,7 +56,7 @@ CREATE TABLE IF NOT EXISTS events
     id      BIGINT NOT NULL AUTO_INCREMENT,
     user_id BIGINT,
     file_id BIGINT,
-    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created TIMESTAMP DEFAULT NOW(),
     event   varchar(255),
     PRIMARY KEY (id)
 );

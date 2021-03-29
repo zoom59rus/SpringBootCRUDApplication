@@ -24,23 +24,6 @@ class AWS3ServiceImplTest {
     }
 
     @Test
-    boolean is_exist(String bucketName) {
-        return s3Service.isExist(bucketName);
-    }
-
-    @Test
-    void is_exist_correct() {
-        boolean result = is_exist("module23");
-        assertTrue(result);
-    }
-
-    @Test
-    void is_Exist_true() {
-        boolean result = is_exist("module255");
-        assertFalse(result);
-    }
-
-    @Test
     void createBucket() {
     }
 

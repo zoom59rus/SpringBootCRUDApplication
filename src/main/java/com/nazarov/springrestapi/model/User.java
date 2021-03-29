@@ -1,9 +1,11 @@
 package com.nazarov.springrestapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -33,7 +35,16 @@ public class User {
     @ToString.Exclude
     private Account account;
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(name = "users_files",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "file_id")})
     @ToString.Exclude
+    @JsonIgnore
     private List<File> files;
+
+    public void addFile(File file){
+        this.files = new ArrayList<>();
+        files.add(file);
+    }
 }
