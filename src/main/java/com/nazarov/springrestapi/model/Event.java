@@ -3,7 +3,7 @@ package com.nazarov.springrestapi.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.ToString;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -30,7 +30,7 @@ public class Event {
     @ToString.Exclude
     protected File file;
 
-    @CreatedDate
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created")
     private Date created;

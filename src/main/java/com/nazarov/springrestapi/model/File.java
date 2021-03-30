@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nazarov.springrestapi.model.enums.FileStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -36,12 +36,12 @@ public class File {
     @Column(name = "status")
     private FileStatus status;
 
-    @CreatedDate
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "upload")
     private Date upload;
 
-    @LastModifiedDate
+    @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_modified")
     private Date lastModified;

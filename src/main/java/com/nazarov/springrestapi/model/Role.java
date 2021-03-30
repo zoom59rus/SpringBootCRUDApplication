@@ -1,5 +1,6 @@
 package com.nazarov.springrestapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nazarov.springrestapi.model.enums.RoleNames;
 import lombok.Data;
 import lombok.ToString;
@@ -23,11 +24,7 @@ public class Role {
     private RoleNames name;
 
     @ManyToMany(mappedBy = "roles", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JsonIgnore
     @ToString.Exclude
     private List<Account> accounts = new ArrayList<>();
-
-    public void addAccount(Account account){
-        this.accounts.add(account);
-        account.addRole(this);
-    }
 }

@@ -9,4 +9,5 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 
     List<Event> getEventsByFileId(Long id);
     List<Event> getEventsByFileName(String name);
+    List<Event> getEventByUserId(Long userId);
 }

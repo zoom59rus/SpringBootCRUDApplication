@@ -1,10 +1,13 @@
 package com.nazarov.springrestapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nazarov.springrestapi.model.enums.AccountStatus;
 import lombok.Data;
 import lombok.ToString;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +17,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "accounts")
+@EnableJpaAuditing
 public class Account {
 
     @Id
@@ -31,26 +35,28 @@ public class Account {
     @Column(name = "status")
     private AccountStatus status;
 
-    @CreatedDate
-    @Temporal(value = TemporalType.TIMESTAMP)
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created")
     private Date created;
 
-    @LastModifiedDate
-    @Temporal(value = TemporalType.TIMESTAMP)
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated")
     private Date updated;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "accounts_roles",
             joinColumns = {@JoinColumn(name = "account_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")
             })
+    @JsonIgnore
     @ToString.Exclude
     private List<Role> roles = new ArrayList<>();
 
-    public void addRole(Role role){
-        this.roles.add(role);
-        role.addAccount(this);
-    }
+    @Transient
+    @OneToOne(mappedBy = "account", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JsonIgnore
+    @ToString.Exclude
+    private User user;
 }

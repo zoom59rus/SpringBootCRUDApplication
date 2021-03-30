@@ -7,6 +7,8 @@ import com.nazarov.springrestapi.repository.EventRepository;
 import com.nazarov.springrestapi.service.EventService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EventServiceImpl implements EventService {
 
@@ -23,5 +25,10 @@ public class EventServiceImpl implements EventService {
         ev.setFile(file);
         ev.setEvent(event);
         eventRepository.save(ev);
+    }
+
+    @Override
+    public List<Event> getEventByUserId(Long userId) {
+        return eventRepository.getEventByUserId(userId);
     }
 }

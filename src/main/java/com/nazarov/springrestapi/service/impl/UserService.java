@@ -61,4 +61,9 @@ public class UserService implements com.nazarov.springrestapi.service.UserServic
     public List<Event> getAllEvent() {
         return eventRepository.findAll();
     }
+
+    @Override
+    public List<Event> getEventsByUserId(Long userId) {
+        return eventRepository.getEventByUserId(userId);
+    }
 }

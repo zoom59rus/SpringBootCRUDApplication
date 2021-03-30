@@ -1,6 +1,7 @@
 package com.nazarov.springrestapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import liquibase.pro.packaged.M;
 import lombok.Data;
 import lombok.ToString;
 
@@ -30,8 +31,8 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @PrimaryKeyJoinColumn
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JsonIgnore
     @ToString.Exclude
     private Account account;
 

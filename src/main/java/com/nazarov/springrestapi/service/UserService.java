@@ -16,5 +16,6 @@ public interface UserService {
 
     List<Event> getEventsByFileId(Long id);
     List<Event> getEventsByFileName(String name);
+    List<Event> getEventsByUserId(Long userId);
     List<Event> getAllEvent();
 }
