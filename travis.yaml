@@ -1,0 +1,8 @@
+language: java
+sudo: false
+script: gradle build
+  provider: pages
+  skip_cleanup: true
+  keep_history: true
+  on:
+    branch: main
