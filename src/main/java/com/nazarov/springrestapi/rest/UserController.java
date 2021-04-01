@@ -5,12 +5,14 @@ import com.nazarov.springrestapi.model.File;
 import com.nazarov.springrestapi.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/v1/users")
+@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 public class UserController {
 
     private final UserService userService;

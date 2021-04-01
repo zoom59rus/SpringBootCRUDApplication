@@ -51,7 +51,6 @@ public class Account {
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")
             })
     @JsonIgnore
-    @ToString.Exclude
     private List<Role> roles = new ArrayList<>();
 
     @Transient
