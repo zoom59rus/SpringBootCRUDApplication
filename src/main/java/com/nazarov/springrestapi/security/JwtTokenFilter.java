@@ -1,6 +1,7 @@
 package com.nazarov.springrestapi.security;
 
 import com.nazarov.springrestapi.security.exception.JwtAuthenticationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,7 @@ public class JwtTokenFilter extends GenericFilterBean {
 
     private final JwtTokenProvider jwtTokenProvider;
 
+    @Autowired
     public JwtTokenFilter(JwtTokenProvider jwtTokenProvider) {
         this.jwtTokenProvider = jwtTokenProvider;
     }

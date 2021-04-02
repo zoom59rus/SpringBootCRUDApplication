@@ -2,6 +2,8 @@ package com.nazarov.springrestapi.security;
 
 import com.nazarov.springrestapi.security.exception.JwtAuthenticationException;
 import io.jsonwebtoken.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,7 +21,8 @@ public class JwtTokenProvider {
 
     private final AccountDetailsService accountDetailsService;
 
-    public JwtTokenProvider(AccountDetailsService accountDetailsService) {
+    @Autowired
+    public JwtTokenProvider(@Qualifier("accountDetailsService") AccountDetailsService accountDetailsService) {
         this.accountDetailsService = accountDetailsService;
     }
 
