@@ -5,7 +5,7 @@ import com.nazarov.springrestapi.model.dto.AccountDto;
 import com.nazarov.springrestapi.model.dto.UserDto;
 import com.nazarov.springrestapi.model.enums.AccountStatus;
 import com.nazarov.springrestapi.service.AdminService;
-import com.nazarov.springrestapi.service.utils.RegistrationService;
+import com.nazarov.springrestapi.service.RegistrationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

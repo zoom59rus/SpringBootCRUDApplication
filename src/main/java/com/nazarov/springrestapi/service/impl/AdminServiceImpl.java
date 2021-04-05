@@ -3,7 +3,6 @@ package com.nazarov.springrestapi.service.impl;
 import com.nazarov.springrestapi.model.*;
 import com.nazarov.springrestapi.model.dto.AccountDto;
 import com.nazarov.springrestapi.model.enums.AccountStatus;
-import com.nazarov.springrestapi.model.enums.RoleNames;
 import com.nazarov.springrestapi.repository.AccountRepository;
 import com.nazarov.springrestapi.repository.EventRepository;
 import com.nazarov.springrestapi.repository.RoleRepository;
@@ -12,7 +11,7 @@ import com.nazarov.springrestapi.service.AWS3Service;
 import com.nazarov.springrestapi.service.AdminService;
 import com.nazarov.springrestapi.service.EventService;
 import com.nazarov.springrestapi.service.ModeratorService;
-import com.nazarov.springrestapi.service.utils.RegistrationService;
+import com.nazarov.springrestapi.service.RegistrationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

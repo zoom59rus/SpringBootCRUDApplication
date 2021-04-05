@@ -1,21 +1,3 @@
-URL: localhost:8080/api/v1
-
-GET /users/files?id=:id, return file on id
-GET /users/files?name=:name, return file on name
-GET /users/files/all, return all files
-GET /users/files?type=:type, return all files on type
-
-GET /users/events?id=:id, return event on id
-GET /users/events/all, return all events
-GET /users/events?fileid=:id, return events on fail id
-GET /users/events?filename=:name, return events on file name
-
-POST /moderators/set?userid=:?&fileid=:?, set file for user on he id
-POST /moderators/delete?id=:?, delete file on id
-POST /moderators/upload?userid=:?bucket=:?&path=:?, return file uploaded
-
-POST /registration, create new account, input JSON request, format { "login": "?", "password": "?"}
-
 POST /admins/accounts/create, @RequestBody AccountDto create new account
 POST /admins/accounts/{id}/add/user/, param id is accountId, @RequestBody UserDto the set account id
 POST /admins/accounts/{id}/changes/password/{password}, param id is accountId, param password is user password on change

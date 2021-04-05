@@ -1,7 +1,6 @@
 package com.nazarov.springrestapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import liquibase.pro.packaged.M;
 import lombok.Data;
 import lombok.ToString;
 

@@ -7,7 +7,7 @@ import com.nazarov.springrestapi.model.enums.AccountStatus;
 import com.nazarov.springrestapi.model.enums.RoleNames;
 import com.nazarov.springrestapi.repository.AccountRepository;
 import com.nazarov.springrestapi.repository.RoleRepository;
-import com.nazarov.springrestapi.service.utils.RegistrationService;
+import com.nazarov.springrestapi.service.RegistrationService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 

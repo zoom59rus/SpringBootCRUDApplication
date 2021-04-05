@@ -1,12 +1,26 @@
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/libs-release" }
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.4.RELEASE")
+    }
+}
+
 plugins {
     id 'org.springframework.boot' version '2.4.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
     id "org.liquibase.gradle" version "2.0.4"
     id 'com.bmuschko.docker-remote-api' version '3.2.3'
+    id "org.asciidoctor.convert" version "1.5.9.2"
 }
 
 apply plugin: 'application'
+apply plugin: 'org.liquibase.gradle'
+apply plugin: 'io.spring.dependency-management'
 
 group = 'com.nazarov'
 version = '0.0.1-SNAPSHOT'
@@ -15,7 +29,13 @@ sourceCompatibility = '1.8'
 mainClassName = "com.nazarov.springrestapi.SpringRestApiApplication"
 
 repositories {
+    mavenLocal()
     mavenCentral()
+}
+
+jar {
+    baseName("SpringRestApiApplication")
+    version("1.0.0")
 }
 
 dependencies {
@@ -23,9 +43,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
-    implementation 'org.liquibase:liquibase-core:4.3.1'
+    runtimeOnly 'org.liquibase:liquibase-core:4.3.1'
+    liquibaseRuntime 'org.liquibase:liquibase-core:4.3.1'
+    liquibaseRuntime group: 'org.liquibase', name: 'liquibase-groovy-dsl', version: '3.0.0'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'mysql:mysql-connector-java'
+    liquibaseRuntime 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
@@ -37,8 +60,41 @@ dependencies {
     implementation group: 'commons-io', name: 'commons-io', version: '2.8.0'
     testImplementation('org.junit.jupiter:junit-jupiter:5.4.1')
     testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.7.1'
+    asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor:2.0.5.RELEASE'
+    compile "org.springframework.boot:spring-boot-starter-hateoas:2.4.4"
+    testCompile("junit:junit")
+    testCompile "com.jayway.jsonpath:json-path"
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.5.6'
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.5.6'
+}
+
+liquibase {
+    activities {
+        main {
+            url 'jdbc:mysql://localhost:3306/module25'
+            username 'javadeveloper'
+            password '123456'
+        }
+    }
+}
+
+bootJar {
+    dependsOn asciidoctor
+    from ("${asciidoctor.outputDir}/html5") {
+        into 'static/docs'
+    }
+}
+
+ext {
+    snippetsDir = file('build/generated-snippets')
+}
+
+asciidoctor {
+    inputs.dir snippetsDir
+    dependsOn test
 }
 
 test {
     useJUnitPlatform()
+    outputs.dir snippetsDir
 }

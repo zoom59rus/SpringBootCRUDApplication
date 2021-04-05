@@ -46,3 +46,22 @@ databaseChangeLog:
       changes:
         - tagDatabase:
             tag: 1.0.2
+  - changeSet:
+      id: 1.0.3
+      author: nazarov
+      comment: Set system administrator and add roles.
+      changes:
+        - sqlFile:
+            path: db.changelog-Set_System_Administrator.sql
+            relativeToChangelogFile: true
+      rollback: DELETE FROM accounts WHERE id=1;
+                DELETE FROM roles WHERE id=1;
+                DELETE FROM roles WHERE id=2;
+                DELETE FROM roles WHERE id=3;
+                DELETE FROM accounts_roles WHERE account_id=1;
+  - changelog:
+      id: release-1.0.3
+      author: nazarov
+      changes:
+        - tagDatabase:
+            tag: 1.0.3

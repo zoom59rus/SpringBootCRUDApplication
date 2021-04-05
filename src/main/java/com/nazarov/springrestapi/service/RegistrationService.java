@@ -1,4 +1,4 @@
-package com.nazarov.springrestapi.service.utils;
+package com.nazarov.springrestapi.service;
 
 import com.nazarov.springrestapi.model.Account;
 import com.nazarov.springrestapi.model.dto.AccountDto;
