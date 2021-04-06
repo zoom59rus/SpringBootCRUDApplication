@@ -1,6 +1,8 @@
 language: java
 install: skip
-
+branches:
+  only:
+    - master
 os: linux
 dist: trusty
 jdk: oraclejdk8
