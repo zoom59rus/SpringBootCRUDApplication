@@ -1,6 +1,8 @@
 language: java
 sudo: false
 script: gradle build
+before_install:
+  gradle -b wrapper.gradle wrapper
 deploy:
   provider: pages
   skip_cleanup: true
