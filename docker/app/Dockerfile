@@ -10,9 +10,9 @@ FROM openjdk:8-jdk-alpine
 LABEL created=Me
 
 #Устанавливает постоянные переменные среды
-ENV AWS_ACCESS_KEY_ID=AKIA4RQPBTRKFL3VYEH7
-ENV AWS_SECRET_ACCESS_KEY=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
-ENV SPRING_DATASOURCE_URL=jdbc.mysql://mysql:3306/module25
+#ENV AWS_ACCESS_KEY_ID=AKIA4RQPBTRKFL3VYEH7
+#ENV AWS_SECRET_ACCESS_KEY=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
+#ENV SPRING_DATASOURCE_URL=jdbc.mysql://mysql:3306/module25
 
 #Выполняет команду или создаёт слой образа. Используется для установки в контейнер пакетов
 #RUN ["apk update && apk upgrade"]
