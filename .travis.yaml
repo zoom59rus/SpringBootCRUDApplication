@@ -6,3 +6,5 @@ jdk: oraclejdk8
 
 script:
   - ./gradlew build --scan -s
+before_install:
+  gradle wrapper
