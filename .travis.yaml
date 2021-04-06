@@ -4,7 +4,7 @@ script: gradle build
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN  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
+  github_token: $GITHUB_TOKEN
   keep_history: true
   on:
     branch: main
