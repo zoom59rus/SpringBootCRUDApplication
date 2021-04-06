@@ -58,7 +58,7 @@ $ docker-compose up
 
 ### Дополнение
 Документацию по использованию API можно посмотреть по адресам: 
-1. Формат OAS3 - localhost:8080/api/v1/api-docs
+1. Формат JSON (.yaml) OAS3 - localhost:8080/api/v1/api-docs
 2. Swagger - localhost:8080/api/v1/swagger-ui.html
 
 ## Описание REST API  
