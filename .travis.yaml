@@ -1,18 +1,10 @@
-before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-cache:
-  directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-
 language: java
-install: skip
-
-jdk:
-  - oraclejdk8
-
-script:
-  - ./gradlew build --scan -s
-before_install:
-  gradle wrapper
+sudo: false
+script: gradle build
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  on:
+    branch: main
