@@ -34,6 +34,36 @@ User -> List<File> files + List<Events> + Account account
 ## Результат 
 Результатом выполнения задания должен быть репозиторий на github, с использованием Travis (https://travis-ci.org/) и отображением статуса сборки проекта.  
 
+## Инструкция по запуску  
+### Описание начальной инициализации
+Инициализация приложения включает в себя создание БД и таблиц, также создаются роли ADMIN, MODERATOR, DEVELOPER, USER.
+При инициализации приложения будут созданы пользователи  
+1. admin:admin  
+2. developer:developer
+
+Рекомендуется изменить пароли.
+
+### Как развернуть приложение
+1. Заполните переменный в файле docker/app/Dokerfile
+ENV AWS_ACCESS_KEY_ID=${YOU_AWS_ACCESS_KEY_ID}
+ENV AWS_SECRET_ACCESS_KEY=${YOU_AWS_SECRET_ACCESS_KEY}
+
+2. Выполните команды:  
+```shell script
+$ gradle build
+$ cd docker
+$ docker-compose up
+```
+3. Приложение будет доступно по адресу: localhost:8080/api/v1
+
+### Дополнение
+Документацию по использованию API можно посмотреть по адресам: 
+1. Формат OAS3 - localhost:8080/api/v1/api-docs
+2. Swagger - localhost:8080/api/v1/swagger-ui.html
+
+## Описание REST API  
+##### Version: 1.0.0 
+````
 ## Описание REST API  
 ## Version: 1.0.0  
 

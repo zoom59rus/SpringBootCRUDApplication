@@ -5,7 +5,6 @@ services:
     container_name: mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=module25
       - MYSQL_USER=javadeveloper
       - MYSQL_PASSWORD=123456
     ports:
@@ -14,17 +13,13 @@ services:
       - mynet
   app:
     build:
-      dockerfile: /app/Dockerfile
+      dockerfile: ./app/Dockerfile
       context: .
-#    image: 'myapp'
     container_name: myapp
-#    environment:
-#      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/module25
-#      - AWS_ACCESS_KEY_ID=AKIA4RQPBTRKFL3VYEH7
-#      - AWS_SECRET_ACCESS_KEY=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
-#    ports:
-#    - 80:8080
-#    command: java -jar /opt/myapp/app.jar
+    ports:
+    - 80:8080
+    networks:
+      - mynet
     depends_on:
       - db
 

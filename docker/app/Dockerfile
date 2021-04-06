@@ -10,15 +10,18 @@ FROM openjdk:8-jdk-alpine
 LABEL created=Me
 
 #Устанавливает постоянные переменные среды
-
+ENV SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/module25
+ENV AWS_ACCESS_KEY_ID=YOU_KEY
+ENV AWS_SECRET_ACCESS_KEY=YOU_SECRET_KEY
 
 #Выполняет команду или создаёт слой образа. Используется для установки в контейнер пакетов
 #RUN ["apk update && apk upgrade"]
 
 #Копирует в контейнер файлы и папки
-COPY ./springrestapi-0.0.1-SNAPSHOT.jar /opt/myapp/app.jar
+COPY build/libs/springrestapi-0.0.1-SNAPSHOT.jar /opt/myapp/app.jar
+
 #Копирует файлы и папки в контейнер, может распаковывать локальные .tar-файлы
-#ADD
+#ADD /build/libs/springrestapi-0.0.1-SNAPSHOT.jar /app.jar
 
 #Описывает команду с аргументами, которую нужно выполнить когда контейнер будет запущен.
 #Аргументы могут быть переопределены при запуске контейнера. В файле может присутствовать лишь одна инструкция CMD
@@ -34,7 +37,7 @@ CMD ["java", "-jar", "/opt/myapp/app.jar"]
 #ENTRYPOINT
 
 #Назначить открытые порт(ы), или PORT:PORT для переадресации: ПОРТ_ОБРАЩЕНИЯ:ПОРТ_НАЗНАЧЕНИЯ (80:8080)
-EXPOSE 8080
+EXPOSE 8080:8080
 
 #Создаёт точку монтирования для работы с постоянным хранилищем
 #VOLUME
