@@ -204,4 +204,19 @@ public class AdminServiceImpl implements AdminService {
     public Role getRoleById(Long roleId) {
         return roleRepository.findById(roleId).orElse(null);
     }
+
+    @Override
+    public void removeAccount(Long id) {
+        accountRepository.deleteById(id);
+    }
+
+    @Override
+    public void removeUser(Long id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public void removeRole(Long id) {
+        roleRepository.deleteById(id);
+    }
 }

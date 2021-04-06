@@ -40,10 +40,10 @@ public class ModeratorController {
             @ApiResponse(responseCode = "403", content = {@Content(mediaType = MediaType.TEXT_HTML_VALUE)}),
             @ApiResponse(responseCode = "304", content = {@Content(mediaType = MediaType.TEXT_HTML_VALUE)})
     })
-    public ResponseEntity<?> setFileToUser(@PathVariable("userId") @Parameter(description = "User id") final Long userId,
+    public ResponseEntity<Void> setFileToUser(@PathVariable("userId") @Parameter(description = "User id") final Long userId,
                                            @PathVariable("fileId") @Parameter(description = "File id") final Long fileId) {
         if (userId == null || fileId == null) {
-            return new ResponseEntity<>(new Error(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Error(), HttpStatus.BAD_REQUEST);
         }
 
         try {
@@ -64,9 +64,9 @@ public class ModeratorController {
             @ApiResponse(responseCode = "403", content = {@Content(mediaType = MediaType.TEXT_HTML_VALUE)}),
             @ApiResponse(responseCode = "304", content = {@Content(mediaType = MediaType.TEXT_HTML_VALUE)})
     })
-    public ResponseEntity<?> deleteFile(@PathVariable("fileId") @Parameter(description = "File id") final Long fileId) {
+    public ResponseEntity<Void> deleteFile(@PathVariable("fileId") @Parameter(description = "File id") final Long fileId) {
         if (fileId == null) {
-            return new ResponseEntity<>(new Error(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Error(), HttpStatus.BAD_REQUEST);
         }
 
         try {

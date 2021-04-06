@@ -21,6 +21,9 @@ public interface AdminService extends UserService, ModeratorService {
     void setAccountPassword(Long accountId, String password);
     void setAccountUser(Long accountId, User user);
     void setAccountUser(Long accountId, Long userId);
+    void removeAccount(Long id);
+    void removeUser(Long id);
+    void removeRole(Long id);
 
     Account getAccountById(Long id);
     List<Account> getAllAccounts();

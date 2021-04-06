@@ -81,7 +81,6 @@ public class UserController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = {@Content(array = @ArraySchema(schema = @Schema(implementation = File.class)))}),
             @ApiResponse(responseCode = "404", content = {@Content(mediaType = MediaType.TEXT_HTML_VALUE)}),
-            @ApiResponse(responseCode = "400", content = {@Content(mediaType = MediaType.TEXT_HTML_VALUE)}),
             @ApiResponse(responseCode = "403", content = {@Content(mediaType = MediaType.TEXT_HTML_VALUE)}),
     })
     public ResponseEntity<List<File>> getAllFiles() {
