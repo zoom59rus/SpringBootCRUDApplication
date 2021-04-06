@@ -34,9 +34,8 @@ User -> List<File> files + List<Events> + Account account
 ## Результат 
 Результатом выполнения задания должен быть репозиторий на github, с использованием Travis (https://travis-ci.org/) и отображением статуса сборки проекта.  
 
-## Описание REST API
-# RESTfull SpringBoot application on module_2_5.
-## Version: 1.0.0
+## Описание REST API  
+## Version: 1.0.0  
 
 **Contact information:**  
 Anton Nazarov  
