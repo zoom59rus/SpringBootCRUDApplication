@@ -3,7 +3,7 @@ package com.nazarov.springrestapi.rest;
 import com.nazarov.springrestapi.model.Account;
 import com.nazarov.springrestapi.repository.AccountRepository;
 import com.nazarov.springrestapi.security.JwtTokenProvider;
-import com.nazarov.springrestapi.security.dto.AuthenticationRequestDto;
+import com.nazarov.springrestapi.model.dto.AuthenticationRequestDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;

@@ -1,4 +1,4 @@
-package com.nazarov.springrestapi.security.dto;
+package com.nazarov.springrestapi.model.dto;
 
 import lombok.Data;
 
